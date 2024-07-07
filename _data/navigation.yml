@@ -2,6 +2,15 @@
 main:
   - title: "Quick-Start Guide"
     url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
+
+contents:
+  - title: "Contents"
+    url: https://mKangSH.github.io/testpage/
+    children:
+      - title: "Content1"
+        url: https://mKangSH.github.io/testpage/content1
+      - title: "Content2"
+        url: https://mKangSH.github.io/testpage/content2
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
   # - title: "Sample Posts"
