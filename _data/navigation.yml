@@ -8,9 +8,9 @@ contents:
     url: https://mKangSH.github.io/testpage/
     children:
       - title: "Content1"
-        url: https://mKangSH.github.io/testpage/content1
+        url: /content1/
       - title: "Content2"
-        url: https://mKangSH.github.io/testpage/content2
+        url: /content2/
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
   # - title: "Sample Posts"
