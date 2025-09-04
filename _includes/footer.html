@@ -46,35 +46,12 @@
 
     {{ site.data.locales[include.lang].meta | replace: ':PLATFORM', _platform | replace: ':THEME', _theme }}
   </p>
-
-  <!-- 방문자 수 표시 -->
-  <p>방문자 수: <strong id="visitor-count">0</strong></p>
+<!-- 방문자(고유)만 표시 -->
+  <div class="visitor-count" style="display:flex;gap:.75rem;flex-wrap:wrap">
+    <span id="busuanzi_container_site_uv">
+      고유 방문자: <strong id="busuanzi_value_site_uv">0</strong>
+    </span>
+  </div>
 </footer>
 
-<script>
-  window.addEventListener('DOMContentLoaded', async () => {
-    const el = document.getElementById('visitor-count');
-    if (!el) return;
-
-    const namespace = 'mkangsh-github-io';
-    const key = 'site-visitors';
-    const visitedKey = 'site-visited-once';
-
-    const endpoint = localStorage.getItem(visitedKey)
-      ? `https://api.countapi.xyz/get/${namespace}/${key}`
-      : `https://api.countapi.xyz/hit/${namespace}/${key}`;
-
-    try {
-      const res = await fetch(endpoint, { cache: 'no-store' });
-      const data = await res.json();
-      if (typeof data.value === 'number') {
-        el.textContent = data.value.toLocaleString('ko-KR');
-        localStorage.setItem(visitedKey, '1'); // 이후부터는 증가하지 않음
-      } else {
-        el.textContent = '0';
-      }
-    } catch {
-      el.textContent = '0';
-    }
-  });
-</script>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
