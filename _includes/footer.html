@@ -47,10 +47,16 @@
     {{ site.data.locales[include.lang].meta | replace: ':PLATFORM', _platform | replace: ':THEME', _theme }}
   </p>
 
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <!-- 방문자 수 표시 -->
-  <p>
-    방문자 수: <strong id="visitor-count">…</strong>
-  </p>
+  <div class="visitor-count">
+  <span id="busuanzi_container_site_pv">
+    Total visits: <span id="busuanzi_value_site_pv"></span>
+  </span>
+  <span id="busuanzi_container_site_uv">
+    Unique visitors: <span id="busuanzi_value_site_uv"></span>
+  </span>
+</div>
 </footer>
 
 <!-- 방문자 수 카운터 스크립트 (CountAPI 사용: 브라우저당 1회만 증가) -->
