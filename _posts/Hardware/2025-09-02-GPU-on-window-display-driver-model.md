@@ -18,7 +18,7 @@ DirectX12 에서 GPU Engine의 정확한 정의를 알기 위한 포스팅
 GPU에서 스케줄링이 가능하고 서로 병렬로 작동할 수 있는 독립적인 실리콘 단위 
   - Copy Engine : 데이터 전송
   - 3D Engine : 3D Rendering
-  - Compute Engine : General Perpose 연산 (확인 필요)
+  - Compute Engine : General Purpose 연산 (확인 필요)
 
 일부 GPU의 경우 CPU Hyper Threading과 비슷한 개념으로 기본 코어를 공유하여 여러 엔진을 매핑함.
   - 코어는 실행 시 엔진 간 공간적, 시간적으로 분할
