@@ -1,10 +1,11 @@
 ---
-title: DirectX12 장치 초기화
+title: DirectX12 파이프라인 초기화
 date: 2025-09-01 18:08:00 +0900
 categories: [Graphics, DirectX12]
 tags: [DirectX12, Graphics]     # TAG names should always be lowercase
 ---
 
+## 0. 배경 지식
 Microsoft DXGI(DirectX Graphics Infrastructure)는 커널 모드 드라이버 및 시스템 하드웨어와 통신하는 역할을 한다.
 
 ## 1. DXGI 생성 (SwapChain 제외)
@@ -38,6 +39,9 @@ Swap Effect 관련 경고를 수정한 이후, Flip 효과를 적용하면 Multi
 현대 게임이 수많은 후처리 작업을 수행하면서 다른 FXAA, MLAA, SMAA 등도 지원해야 하기 때문에 스왑 체인에서 Multi-Sampling을 하지 못하도록 해두었다고 한다.
   - 정확하게 확인된 사실은 아닙니다. 
   - 참조 [StackOverflow Question](https://stackoverflow.com/questions/56286975/how-to-fix-this-multisampling-error-when-creating-a-swapchain)
+
+## 5. Swap Chain Buffer 생성
+Render Target View Descriptor 생성 => Render Target View에 SwapChain에 대한 Buffer를 연결하여 준비한다.
 
 ===============================================================      
 DXGIFactory CreateSwapChain 설명을 보면, DirectX 11 버전까지는 Direct3D device 포인터를 DirectX 12 버전부터는 direct command queue인 
