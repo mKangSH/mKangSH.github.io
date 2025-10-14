@@ -1,16 +1,22 @@
 ---
 title: 언리얼 네트워크
-date: 2025-10-10 22:00:00 +0900
+date: 2025-10-14 12:00:00 +0900
 categories: [Game, Server]
 tags: [Programming, C++, Game, Server, Unreal Engine]
 ---
 
 ## 언리얼 네트워크
-온라인 게임을 빠르게 개발 가능하도록 만들어 줌. 
+단일 코드로 클라와 서버를 동시에 제작 가능하도록 하여 온라인 게임을 빠르게 개발 가능하도록 만들어 줌. 
 
 ### 핵심 기능
 - Replication : Server의 액터를 Client에 전파하는 방식    
-Server -> Client 단방향 통신
+  Server -> Client 단방향 통신   
+  Blueprint 기준으로 Actor의 Replicates 옵션 On   
+
+  기본적으로는 생성 / 소멸 즉 클래스 디폴트 값으로 복제하여 싱크를 맞춤   
+  - 프로퍼티 복제 : 액터의 멤버 변수의 값(데이터)을 동일하게 복제하는 방식     
+    Replication 옵션을 RepNotify로 설정하면 OnPropertyChanged 이벤트 설정하여 값이 변경되는 상황 감지 가능
+  - 컴포넌트 복제 : 이동 컴포넌트 등 액터에 붙어있는 요소와 함께 복제하는 방식
 
 - RPC (Remote Procedure Call) : 원격 함수 호출
 
@@ -49,3 +55,20 @@ Server -> Client 단방향 통신
 ### 클라이언트 (로컬 플레이어) 실행 순서
 1. 로컬 플레이어의 플레이어 컨트롤러를 이용하여 서버의 폰 플레이어 컨트롤러에 입력 전달
 2. 서버가 플레이어에 상태 복제
+
+## 클라이언트 / Server 구분 
+1. Enum ENetMode를 통해 현재 실행되는 프로그램의 NetMode 체크
+    - NM_Standalone
+    - NM_DedicatedServer
+    - NM_ListenServer
+    - NM_Client
+
+2. 권한을 이용하여 체크 
+    - HasAuthority() : 연출에만 사용하는 일부 Cosmetic Actor의 경우 클라이언트에서 권한을 가지고 있는 예외가 있음
+
+3. NetRole
+    - Server : Authority
+    - Client : Autonomous Proxy(직접 제어), Simulated Proxy(제어하지 않는 액터)   
+
+    GetLocalRole() : 현재 구동되는 프로그램에서의 액터 역할 확인      
+    GetRemoteRole() : 서버에서 호출할 경우 클라이언트에서의 액터 역할 확인, 클라이언트에서 호출하는 경우 서버에서의 액터 역할 확인 
